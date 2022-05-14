@@ -165,6 +165,8 @@ public:
 	static int RunReload();
 	static void RequestReload();
 	static void SetStartPage(const std::string& page_name);
+	static int getTW_X_OFFSET();
+	static int getTW_Y_OFFSET();
 
 	// Used for actions and pages
 	static int ChangePage(std::string name);

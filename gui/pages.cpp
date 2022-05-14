@@ -1381,6 +1381,20 @@ void PageManager::LoadLanguage(string filename) {
 	PartitionManager.Translate_Partition_Display_Names();
 }
 
+int PageManager::getTW_X_OFFSET()
+{
+	if (!TWFunc::Fox_Property_Get("ro.product.device.tw_x_offset").empty())
+		return stoi(TWFunc::Fox_Property_Get("ro.product.device.tw_x_offset"));
+	return 0;
+}
+
+int PageManager::getTW_Y_OFFSET()
+{
+	if (!TWFunc::Fox_Property_Get("ro.product.device.tw_y_offset").empty())
+		return stoi(TWFunc::Fox_Property_Get("ro.product.device.tw_y_offset"));
+	return 0;
+}
+
 int PageManager::LoadPackage(std::string name, std::string package, std::string startpage)
 {
 	std::string mainxmlfilename = package;
@@ -1400,8 +1414,8 @@ int PageManager::LoadPackage(std::string name, std::string package, std::string 
 	if (package.size() > 4 && package.substr(package.size() - 4) != ".zip")
 	{
 		LOGINFO("Load XML directly\n");
-		tw_x_offset = TW_X_OFFSET;
-		tw_y_offset = TW_Y_OFFSET;
+		tw_x_offset = getTW_X_OFFSET();
+		tw_y_offset = getTW_Y_OFFSET();
 		tw_w_offset = TW_W_OFFSET;
 		tw_h_offset = TW_H_OFFSET;
 		if (name != "splash") {
